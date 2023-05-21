@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.ironmeddieapps.data'
+    namespace 'com.ironmeddieapps.database'
     compileSdk compile_sdk
 
     defaultConfig {
@@ -37,12 +37,10 @@ kapt {
 }
 
 dependencies {
-
-    implementation project(":remote")
     implementation project(":models")
-    implementation project(":database")
 
     implementation "androidx.core:core-ktx:$core_ktx"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -51,4 +49,10 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
+    //room
+    def room_version = "2.5.1"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }

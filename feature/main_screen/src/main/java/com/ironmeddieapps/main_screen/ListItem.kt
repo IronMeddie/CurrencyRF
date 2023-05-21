@@ -1,75 +1,27 @@
-package com.ironmeddieapps.currencylist
+package com.ironmeddieapps.main_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.ironmeddieapps.models.CurencyItem
-import com.ironmeddieapps.utils.DataResource
+
 
 @Composable
-fun ListScreen(viewModel: ListViewModel = hiltViewModel()) {
-
-    val data = viewModel.list.collectAsState().value
-
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        when (data) {
-            is DataResource.Success -> {
-                items(data.data.Valute) {
-                    ListItem(it){
-                        viewModel.saveValute(it)
-                    }
-                }
-            }
-
-            is DataResource.Failure -> {
-                item {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        Text(text = data.errorBody)
-                    }
-                }
-
-            }
-
-            else -> {
-                item {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        Text(text = "loading")
-                    }
-                }
-            }
-        }
-
-
-    }
-
-}
-
-@Composable
-private fun ListItem(item: CurencyItem, onClickFavorite : ()-> Unit) {
+fun ListItem(item: CurencyItem, onClickFavorite : ()-> Unit) {
     Box() {
         Column(
             Modifier
@@ -108,10 +60,7 @@ private fun ListItem(item: CurencyItem, onClickFavorite : ()-> Unit) {
             }
 
         }
-        IconButton(onClick = {onClickFavorite()}, modifier = Modifier.align(Alignment.CenterEnd)) {
-            Icon(imageVector = Icons.Default.Favorite, contentDescription = "save valute")
-        }
-    }
 
+    }
 
 }

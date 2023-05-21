@@ -41,6 +41,7 @@ dependencies {
     implementation project(":remote")
     implementation project(":data")
     implementation project(":models")
+    implementation project(":database")
 
     implementation "androidx.core:core-ktx:$core_ktx"
     testImplementation 'junit:junit:4.13.2'

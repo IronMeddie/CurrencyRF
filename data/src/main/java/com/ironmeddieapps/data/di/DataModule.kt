@@ -1,4 +1,4 @@
-package com.ironmeddieapps.data.repository.di
+package com.ironmeddieapps.data.di
 
 import com.ironmeddieapps.data.repository.CurrencyRepositoryImpl
 import com.ironmeddieapps.remote.repository.CurrencyRepository
@@ -18,4 +18,6 @@ class DataModule{
     fun provideProductsRepository(api: ApiService) : CurrencyRepository {
         return CurrencyRepositoryImpl(api)
     }
+
+
 }

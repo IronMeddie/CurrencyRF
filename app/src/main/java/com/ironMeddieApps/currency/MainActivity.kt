@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ironMeddieApps.currency.ui.theme.CurrencyTheme
 import com.ironmeddieapps.currencylist.ListScreen
+import com.ironmeddieapps.nav_host.MainNavGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ListScreen()
+                    MainNavGraph()
                 }
             }
         }
