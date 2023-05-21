@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ironmeddieapps.models.Currency
-import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -16,7 +15,7 @@ import java.util.Locale
 @Composable
 fun InfoBanner(data: Currency){
 
-    val formatter = SimpleDateFormat("yyyy-MM-dd", Locale("RUSSIAN"))
+    val formatter = SimpleDateFormat("yyyy-MM-dd", Locale("ru","RUS"))
     val date = formatter.parse(data.Date)
     val date2 = formatter.parse(data.PreviousDate)
     Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
