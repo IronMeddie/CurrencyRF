@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,7 +39,7 @@ fun ListScreen(viewModel: ListViewModel = hiltViewModel()) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         when (data) {
             is DataResource.Success -> {
-                items(data.data.Valute) {
+                items(data.data.Valute, key = { it.ID }) {
                     ListItem(it){
                         viewModel.saveValute(it)
                     }
@@ -47,7 +48,7 @@ fun ListScreen(viewModel: ListViewModel = hiltViewModel()) {
 
             is DataResource.Failure -> {
                 item {
-                    Box(modifier = Modifier.fillMaxSize()) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Text(text = data.errorBody)
                     }
                 }
@@ -56,8 +57,8 @@ fun ListScreen(viewModel: ListViewModel = hiltViewModel()) {
 
             else -> {
                 item {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        Text(text = "loading")
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator()
                     }
                 }
             }

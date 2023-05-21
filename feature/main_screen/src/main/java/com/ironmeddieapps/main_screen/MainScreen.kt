@@ -45,10 +45,10 @@ fun MainScreen(viewModel: MainScreenViewModel = hiltViewModel(), navController: 
 
             when (data ){
                 is DataResource.Success -> {
-                    item {
+                    item(key = "infoBanner") {
                         InfoBanner(data.data)
                     }
-                    items(data.data.Valute){
+                    items(data.data.Valute, key = { it.ID }){
                         ListItem(item = it) {
                         }
                     }

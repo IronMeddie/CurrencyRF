@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ironmeddieapps.domain.usecase.DeleteValuteFromFavorites
 import com.ironmeddieapps.domain.usecase.GetCurrency
+import com.ironmeddieapps.domain.usecase.GetFavoriteValutes
 import com.ironmeddieapps.domain.usecase.SaveValuteToFavorite
 import com.ironmeddieapps.models.CurencyItem
 import com.ironmeddieapps.models.Currency
@@ -23,6 +24,9 @@ class ListViewModel @Inject constructor(private val getCurrency: GetCurrency, pr
 
     private val _list = MutableStateFlow<DataResource<Currency>>(DataResource.Loading)
     val list = _list.asStateFlow()
+
+    private val _favorites = MutableStateFlow<DataResource<Currency>>(DataResource.Loading)
+    val favorites = _favorites.asStateFlow()
 
     init {
         load()
@@ -45,5 +49,7 @@ class ListViewModel @Inject constructor(private val getCurrency: GetCurrency, pr
             delete(item)
         }
     }
+
+
 }
 
