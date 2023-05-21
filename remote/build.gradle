@@ -7,11 +7,11 @@ plugins {
 
 android {
     namespace 'com.ironmeddieapps.remote'
-    compileSdk 33
+    compileSdk compile_sdk
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk min_sdk
+        targetSdk target_sdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -24,11 +24,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility source_compatibility
+        targetCompatibility target_compatibility
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = jvm_target
     }
 }
 
@@ -41,7 +41,7 @@ dependencies {
 
     implementation project(":models")
 
-    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation "androidx.core:core-ktx:$core_ktx"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -49,8 +49,8 @@ dependencies {
 
 
     //DI - HILT
-    implementation "com.google.dagger:hilt-android:2.44.2"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
 
     // Retrofit

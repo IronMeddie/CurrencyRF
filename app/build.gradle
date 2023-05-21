@@ -7,12 +7,14 @@ plugins {
 
 android {
     namespace 'com.ironMeddieApps.currency'
-    compileSdk 33
+
+    compileSdk compile_sdk
+
 
     defaultConfig {
         applicationId "com.ironMeddieApps.currency"
-        minSdk 24
-        targetSdk 33
+        minSdk min_sdk
+        targetSdk target_sdk
         versionCode 1
         versionName "1.0"
 
@@ -29,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility source_compatibility
+        targetCompatibility target_compatibility
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = jvm_target
     }
     buildFeatures {
         compose true
@@ -49,10 +51,16 @@ android {
 }
 
 dependencies {
+    implementation project(":models")
+    implementation project(":remote")
+    implementation project(":feature:currency_list")
+    implementation project(":domain")
+    implementation project(":data")
 
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-    implementation 'androidx.activity:activity-compose:1.7.1'
+
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_ktx"
+    implementation "androidx.activity:activity-compose:$activity_compose"
     implementation platform('androidx.compose:compose-bom:2022.10.00')
     implementation 'androidx.compose.ui:ui'
     implementation 'androidx.compose.ui:ui-graphics'
@@ -68,8 +76,8 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
     //DI - HILT
-    implementation "com.google.dagger:hilt-android:2.44.2"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 }
 
 // Allow references to generated code

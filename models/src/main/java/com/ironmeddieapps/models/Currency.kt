@@ -5,5 +5,5 @@ data class Currency(
     val PreviousDate: String,
     val PreviousURL: String,
     val Timestamp: String,
-    val Valute: Valute
+    val Valute: List<CurencyItem>
 )
