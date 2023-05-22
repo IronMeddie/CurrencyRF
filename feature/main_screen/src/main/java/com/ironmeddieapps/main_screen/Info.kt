@@ -15,12 +15,12 @@ import java.util.Locale
 @Composable
 fun InfoBanner(data: Currency){
 
-    val formatter = SimpleDateFormat("yyyy-MM-dd", Locale("ru","RUS"))
-    val date = formatter.parse(data.Date)
-    val date2 = formatter.parse(data.PreviousDate)
+//    val formatter = SimpleDateFormat("yyyy-MM-dd", Locale("ru","RUS"))
+//    val date = formatter.parse(data.Date)
+//    val date2 = formatter.parse(data.PreviousDate)
     Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
-        Text(text = "Обновлено в " + date)
-        Text(text = "Ранее: " + date2)
+        Text(text = "Обновлено в " + data.Date)
+        Text(text = "Ранее: " + data.PreviousDate)
     }
 
 }
