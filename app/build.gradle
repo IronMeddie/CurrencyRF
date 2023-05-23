@@ -59,6 +59,7 @@ dependencies {
     implementation project(":nav_host")
     implementation project(":navigation")
     implementation project(":database")
+    implementation project(":analitics")
 
 
     implementation "androidx.core:core-ktx:$core_ktx"

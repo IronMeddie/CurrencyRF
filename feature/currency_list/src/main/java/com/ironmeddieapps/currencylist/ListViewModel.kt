@@ -2,9 +2,9 @@ package com.ironmeddieapps.currencylist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.analitics.Analitics
 import com.ironmeddieapps.domain.usecase.DeleteValuteFromFavorites
 import com.ironmeddieapps.domain.usecase.GetCurrency
-import com.ironmeddieapps.domain.usecase.GetFavoriteValutes
 import com.ironmeddieapps.domain.usecase.SaveValuteToFavorite
 import com.ironmeddieapps.models.CurencyItem
 import com.ironmeddieapps.models.Currency
@@ -29,12 +29,14 @@ class ListViewModel @Inject constructor(private val getCurrency: GetCurrency, pr
     val favorites = _favorites.asStateFlow()
 
     init {
+        Analitics.reportListOpen()
         load()
     }
 
     fun load(){
         getCurrency().onEach { data->
             _list.value = data
+            Analitics.reportDataLoaded()
         }.launchIn(viewModelScope)
     }
 

@@ -3,6 +3,7 @@ package com.ironmeddieapps.main_screen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.analitics.Analitics
 import com.ironmeddieapps.domain.usecase.GetFavoriteValutes
 import com.ironmeddieapps.models.Currency
 import com.ironmeddieapps.utils.DataResource
@@ -26,6 +27,7 @@ class MainScreenViewModel @Inject constructor(private val getFavoriteValutes: Ge
     fun getList(){
         getFavoriteValutes().onEach {
             _list.value = it
+            Analitics.reportDataLoaded()
         }.launchIn(viewModelScope)
     }
 
