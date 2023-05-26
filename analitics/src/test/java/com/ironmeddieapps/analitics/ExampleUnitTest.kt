@@ -1,4 +1,4 @@
-package com.example.analitics
+package com.ironmeddieapps.analitics
 
 import org.junit.Test
 
