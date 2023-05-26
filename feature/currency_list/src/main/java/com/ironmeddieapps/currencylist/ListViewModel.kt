@@ -2,7 +2,7 @@ package com.ironmeddieapps.currencylist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.analitics.Analitics
+import com.ironmeddieapps.analitics.Analitics
 import com.ironmeddieapps.domain.usecase.DeleteValuteFromFavorites
 import com.ironmeddieapps.domain.usecase.GetCurrency
 import com.ironmeddieapps.domain.usecase.SaveValuteToFavorite
@@ -20,13 +20,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ListViewModel @Inject constructor(private val getCurrency: GetCurrency, private val save: SaveValuteToFavorite,private val delete: DeleteValuteFromFavorites): ViewModel() {
+class ListViewModel @Inject constructor(private val getCurrency: GetCurrency, private val save: SaveValuteToFavorite): ViewModel() {
 
     private val _list = MutableStateFlow<DataResource<Currency>>(DataResource.Loading)
     val list = _list.asStateFlow()
-
-    private val _favorites = MutableStateFlow<DataResource<Currency>>(DataResource.Loading)
-    val favorites = _favorites.asStateFlow()
 
     init {
         Analitics.reportListOpen()
@@ -46,11 +43,7 @@ class ListViewModel @Inject constructor(private val getCurrency: GetCurrency, pr
         }
     }
 
-    fun deleteValute(item: CurencyItem){
-        CoroutineScope(Dispatchers.IO).launch {
-            delete(item)
-        }
-    }
+
 
 
 }

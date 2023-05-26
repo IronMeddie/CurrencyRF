@@ -1,5 +1,6 @@
 package com.ironmeddieapps.currencylist
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ironmeddieapps.models.CurencyItem
 import com.ironmeddieapps.utils.DataResource
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ListScreen(viewModel: ListViewModel = hiltViewModel()) {
 
@@ -40,7 +42,15 @@ fun ListScreen(viewModel: ListViewModel = hiltViewModel()) {
         when (data) {
             is DataResource.Success -> {
                 items(data.data.Valute, key = { it.ID }) {
-                    ListItem(it){
+                    ListItem(
+                        it, Modifier
+                            .fillMaxWidth()
+                            .padding(4.dp)
+                            .shadow(4.dp, RoundedCornerShape(16.dp))
+                            .background(Color.White)
+                            .clip(RoundedCornerShape(16.dp))
+                            .animateItemPlacement()
+                    ) {
                         viewModel.saveValute(it)
                     }
                 }
@@ -70,17 +80,9 @@ fun ListScreen(viewModel: ListViewModel = hiltViewModel()) {
 }
 
 @Composable
-private fun ListItem(item: CurencyItem, onClickFavorite : ()-> Unit) {
-    Box() {
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .padding(4.dp)
-                .shadow(4.dp, RoundedCornerShape(16.dp))
-                .background(Color.White)
-                .clip(RoundedCornerShape(16.dp))
-
-        ) {
+private fun ListItem(item: CurencyItem, modifier: Modifier, onClickFavorite: () -> Unit) {
+    Box(modifier) {
+        Column() {
 
             Row(
                 modifier = Modifier
@@ -109,7 +111,10 @@ private fun ListItem(item: CurencyItem, onClickFavorite : ()-> Unit) {
             }
 
         }
-        IconButton(onClick = {onClickFavorite()}, modifier = Modifier.align(Alignment.CenterEnd)) {
+        IconButton(
+            onClick = { onClickFavorite() },
+            modifier = Modifier.align(Alignment.CenterEnd)
+        ) {
             Icon(imageVector = Icons.Default.Favorite, contentDescription = "save valute")
         }
     }

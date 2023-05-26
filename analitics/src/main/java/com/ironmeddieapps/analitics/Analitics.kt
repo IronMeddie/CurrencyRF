@@ -1,6 +1,8 @@
 package com.ironmeddieapps.analitics
 
 import android.app.Application
+import com.yandex.metrica.YandexMetrica
+import com.yandex.metrica.YandexMetricaConfig
 
 object Analitics {
 

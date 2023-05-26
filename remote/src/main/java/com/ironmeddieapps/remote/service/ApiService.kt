@@ -9,4 +9,5 @@ interface ApiService {
     @GET(Constance.CURRENCY_JSON)
     suspend fun getCurrency(): CurrencyDto
 
+
 }

@@ -1,7 +1,7 @@
 package com.ironMeddieApps.currency.app
 
 import android.app.Application
-import com.example.analitics.Analitics
+import com.ironmeddieapps.analitics.Analitics
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

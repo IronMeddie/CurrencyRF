@@ -1,26 +1,10 @@
 package com.ironmeddieapps.main_screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.ironmeddieapps.models.Currency
-import java.text.SimpleDateFormat
-import java.util.Locale
 
-
-@Composable
-fun InfoBanner(data: Currency){
-
-//    val formatter = SimpleDateFormat("yyyy-MM-dd", Locale("ru","RUS"))
-//    val date = formatter.parse(data.Date)
-//    val date2 = formatter.parse(data.PreviousDate)
-    Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
-        Text(text = "Обновлено в " + data.Date)
-        Text(text = "Ранее: " + data.PreviousDate)
-    }
-
+fun convertDate(date: String) : String {
+    val day= date.substringBefore("T").substringAfterLast("-")
+    val mounth= date.substringAfter("-").substringBefore("-")
+    val hour = date.substringAfter("T").substringBefore(":")
+    val minute = date.substringAfter(":").substringBefore(":")
+    return "$day.$mounth $hour:$minute"
 }

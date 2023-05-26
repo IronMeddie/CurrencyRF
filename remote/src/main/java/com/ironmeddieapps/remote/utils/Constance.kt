@@ -4,6 +4,7 @@ object Constance {
 
     const val BASE_URL = "https://www.cbr-xml-daily.ru/"
     const val CURRENCY_JSON = "/daily_json.js"
+    const val CURRENCY_JSON_DAY = "/archive"
     const val NO_INTERNET = "No Internet"
 
 
