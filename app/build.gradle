@@ -1,0 +1,104 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+//    id'com.dicedmelon.gradle.jacoco-android'
+}
+//jacoco {
+//    toolVersion = "0.8.4"
+//}
+//tasks.withType(Test) {
+//    jacoco.includeNoLocationClasses = true
+//}
+
+android {
+    namespace 'com.ironMeddieApps.currency'
+
+    compileSdk compile_sdk
+
+
+    defaultConfig {
+        applicationId "com.ironMeddieApps.currency"
+        minSdk min_sdk
+        targetSdk target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility source_compatibility
+        targetCompatibility target_compatibility
+    }
+    kotlinOptions {
+        jvmTarget = jvm_target
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_kompiler_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation project(":models")
+    implementation project(":remote")
+    implementation project(":feature:currency_list")
+    implementation project(":domain")
+    implementation project(":data")
+    implementation project(":nav_host")
+    implementation project(":navigation")
+    implementation project(":database")
+    implementation project(":analitics")
+
+
+
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime_ktx"
+    implementation "androidx.activity:activity-compose:$activity_compose"
+    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation 'androidx.compose.material3:material3'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    //DI - HILT
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+}
